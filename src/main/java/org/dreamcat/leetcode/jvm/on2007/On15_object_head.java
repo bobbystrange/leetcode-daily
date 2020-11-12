@@ -6,6 +6,7 @@ import org.openjdk.jol.info.ClassLayout;
  * Create by tuke on 2020/7/16
  */
 public class On15_object_head {
+
     // -XX:-UseCompressedOops, default is -XX:+UseCompressedOops
     public static void main(String[] args) {
         A a = new A();
@@ -139,17 +140,20 @@ public class On15_object_head {
     // Note 16 =  4 mark_word + 4 padding + 4 class_address + 4 alignment
     //      16 =  8 mark_word + 8 class_address
     static class A {
+
     }
 
     // Note 24 = 4 mark_word + 4 padding + 4 class_address + 4 alignment + 8 long
     //      24 = 8 mark_word + 8 class_address + 8 long
     static class B {
+
         long s;
     }
 
     // Note 24 = 4 mark_word + 4 padding + 4 class_address + 4 int + 8 long
     //      32 = 8 mark_word + 8 class_address + 8 long + 4 int + 4 alignment
     static class C {
+
         // field rearrangement to <a, s> caused by 'alignment/padding gap'
         long s;
         int a;

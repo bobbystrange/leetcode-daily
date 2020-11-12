@@ -3,9 +3,11 @@ package org.dreamcat.leetcode.jvm.on2007;
 /**
  * Create by tuke on 2020/7/15
  * <p>
- * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main org.dreamcat.leetcode.jvm.on2007.On15_box
+ * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main
+ * org.dreamcat.leetcode.jvm.on2007.On15_box
  */
 public class On15_box {
+
     int a;
 
     On15_box(int a) {

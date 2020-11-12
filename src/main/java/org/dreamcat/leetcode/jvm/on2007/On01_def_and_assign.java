@@ -3,7 +3,8 @@ package org.dreamcat.leetcode.jvm.on2007;
 /**
  * Create by tuke on 2020/7/1
  * <p>
- * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main org.dreamcat.leetcode.jvm.on2007.On01_def_and_assign
+ * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main
+ * org.dreamcat.leetcode.jvm.on2007.On01_def_and_assign
  */
 public class On01_def_and_assign {
 

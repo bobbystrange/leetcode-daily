@@ -8,6 +8,7 @@ import java.io.PipedOutputStream;
  * Create by tuke on 2020/7/18
  */
 public class On18_piped {
+
     public static void main(String[] args) throws IOException {
         var in = new PipedInputStream();
         var out = new PipedOutputStream();

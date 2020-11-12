@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
  * </pre>
  */
 public class On18_thread_state {
+
     private static final Object lock1 = new Object();
     private static final Object lock2 = new Object();
 

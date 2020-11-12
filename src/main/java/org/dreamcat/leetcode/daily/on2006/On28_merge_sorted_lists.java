@@ -25,7 +25,8 @@ public class On28_merge_sorted_lists {
         return mergeSortedLists(lists, len);
     }
 
-    public static <T extends Comparable<T>> LinkedList<T> mergeSortedLists(LinkedList<T>[] lists, int length) {
+    public static <T extends Comparable<T>> LinkedList<T> mergeSortedLists(LinkedList<T>[] lists,
+            int length) {
         return switch (length) {
             case 0 -> new LinkedList<>();
             case 1 -> new LinkedList<>(lists[0]);
@@ -34,7 +35,8 @@ public class On28_merge_sorted_lists {
         };
     }
 
-    private static <T extends Comparable<T>> LinkedList<T> mergeSortedLists(LinkedList<T> a, LinkedList<T> b) {
+    private static <T extends Comparable<T>> LinkedList<T> mergeSortedLists(LinkedList<T> a,
+            LinkedList<T> b) {
         LinkedList<T> list = new LinkedList<>();
         if (a.isEmpty() || b.isEmpty()) {
             list.addAll(a);

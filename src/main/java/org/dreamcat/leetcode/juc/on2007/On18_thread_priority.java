@@ -1,14 +1,14 @@
 package org.dreamcat.leetcode.juc.on2007;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Create by tuke on 2020/7/18
  */
 public class On18_thread_priority {
+
     private static volatile boolean notStart = true;
     private static volatile boolean notEnd = true;
 
@@ -36,6 +36,7 @@ public class On18_thread_priority {
 
     @RequiredArgsConstructor
     static class Job implements Runnable {
+
         final int priority;
         long count;
 

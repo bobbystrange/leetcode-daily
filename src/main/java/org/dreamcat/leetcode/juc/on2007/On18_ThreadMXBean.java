@@ -8,6 +8,7 @@ import java.lang.management.ThreadMXBean;
  * Create by tuke on 2020/7/18
  */
 public class On18_ThreadMXBean {
+
     public static void main(String[] args) {
         ThreadMXBean mxBean = ManagementFactory.getThreadMXBean();
         ThreadInfo[] threadInfos = mxBean.dumpAllThreads(false, false);

@@ -18,9 +18,7 @@ public class On17_find_median_for_sorted_arrays {
             return findKth(a, 0, b, 0, total / 2 + 1);
         } else {
             int left = findKth(a, 0, b, 0, total / 2);
-            ;
             int right = findKth(a, 0, b, 0, total / 2 + 1);
-            ;
             return (left + right) / 2.0;
         }
     }
@@ -31,8 +29,12 @@ public class On17_find_median_for_sorted_arrays {
             return findKth(b, i, a, i, k);
         }
         // if a is empty, then return the median of b
-        if (i == a.length) return b[j + k - 1];
-        if (k == 1) return Math.min(a[i], b[j]);
+        if (i == a.length) {
+            return b[j + k - 1];
+        }
+        if (k == 1) {
+            return Math.min(a[i], b[j]);
+        }
 
         int si = Math.min(a.length, i + k / 2);
         int sj = Math.min(b.length, j + k - k / 2);

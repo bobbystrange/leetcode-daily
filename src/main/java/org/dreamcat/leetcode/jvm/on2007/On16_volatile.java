@@ -3,14 +3,15 @@ package org.dreamcat.leetcode.jvm.on2007;
 /**
  * Create by tuke on 2020/7/16
  * <p>
- * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main org.dreamcat.leetcode.jvm.on2007.On16_volatile
+ * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main
+ * org.dreamcat.leetcode.jvm.on2007.On16_volatile
  * <p>
- * write a volatile variable, then perform the asm code: lock xxx
- * 1. write the cache line of current CPU to system memory
- * 2. invalidate the cache line of other CPUs pointed to the variable address
+ * write a volatile variable, then perform the asm code: lock xxx 1. write the cache line of current
+ * CPU to system memory 2. invalidate the cache line of other CPUs pointed to the variable address
  * <p>
- * in older processors, lock the bus so that other CPU cannot access the memory
- * intl-64 use <italic>MESI(modify,exclusive，share,invalidate)</italic> <strong>cache lock</strong> to maintain the consistency
+ * in older processors, lock the bus so that other CPU cannot access the memory intl-64 use
+ * <italic>MESI(modify,exclusive，share,invalidate)</italic> <strong>cache lock</strong> to maintain
+ * the consistency
  */
 public class On16_volatile {
 
@@ -41,12 +42,14 @@ public class On16_volatile {
     }
 
     static class Vol {
+
         volatile int w1;
         volatile long w2;
         volatile String s;
     }
 
     static class NoVol {
+
         int w1;
         long w2;
         String s;

@@ -2,6 +2,8 @@ package org.dreamcat.leetcode.daily.on2006;
 
 /**
  * Create by tuke on 2020/6/18
+ *
+ * @author tuke
  */
 public class On18_match_simple_regexp {
 
@@ -14,86 +16,79 @@ public class On18_match_simple_regexp {
     }
 
     public static boolean matchSimpleRegexp(String s, String p) {
-        if (s.isEmpty()) return p.isEmpty();
-
-        //["xx", "xx", ""]
-        var pats = p.split("\\*");
-        for (int i = 0, size = pats.length; i < size; i++) {
-            var pat = pats[i];
-            if (pat.isEmpty() && i != size - 1) {
-                throw new IllegalArgumentException("invalid format, include continual *");
-            }
-
-            int plen = pat.length();
-            char matchChar;
-            if (plen > 1) {
-                var stringThatExcludesStars = pat.substring(0, plen - 1);
-                matchChar = pat.charAt(plen - 1);
-                if (!matchSimpleRegexp(s, pat.substring(0, plen - 1))) {
-                    return false;
-                } else {
-                    s = s.substring(plen);
-                }
-            } else {
-                matchChar = pat.charAt(plen - 1);
-            }
-
+        int slen = s.length();
+        int plen = p.length();
+        if (slen == 0 && plen == 0) {
+            return true;
         }
+        // dp[i][j]: s.subString(0, i) match p.subString(0, j)
+        boolean[][] dp = new boolean[slen + 1][plen + 1];
+        //
+        dp[0][0] = true;
+
         return false;
     }
 
-    // s [a-z]*, p [a-z.*]*
-    public static boolean matchSimpleRegexp2(String s, String p) {
-        if (s.isEmpty()) return p.isEmpty();
+    public static boolean isMatch(String s, String p) {
+        int slen = s.length();
+        int plen = p.length();
+        if (slen == 0 && plen == 0) {
+            return true;
+        }
+        //if(slen==0||plen==0)return false;
 
-        int si = 0;
-        for (int i = 0, plen = p.length(), slen = s.length(); i < plen; i++) {
-            if (si == slen) return false;
+        boolean[][] dp = new boolean[slen + 1][plen + 1];
+        //dp[i][j]表示s的0到i-1和p的0到j-1是否匹配
+        dp[0][0] = true;
+        //初始化s=0
+        for (int j = 1; j <= plen; j++) {
+            //当s为空时，a*b*c*可以匹配
+            //当判断到下标j-1是*，j-2是b，b对应f，要看之前的能否匹配
+            //比如a*b*下标依次为ftft，b之前的位t，所以j-1也是true
+            //即dp[0][j]对应的下标j-1位true
+            if (j == 1) {
+                dp[0][j] = false;
+            }
+            if (p.charAt(j - 1) == '*' && dp[0][j - 2]) {
+                dp[0][j] = true;
+            }
+        }
 
-            // c is never *, since the assumption
-            char c = p.charAt(i);
+        //for循环当s长度为1时能否匹配，一直到s长度为slen
+        for (int i = 1; i <= slen; i++) {
+            for (int j = 1; j <= plen; j++) {
+                //最简单的两种情况   字符相等或者p的字符是‘.'
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+                //p当前字符是*时，要判断*前边一个字符和s当前字符
 
-            // [a-z]
-            if (i == plen - 1) {
-                if (c == '.') return true;
+                else if (p.charAt(j - 1) == '*') {
+                    if (j < 2) {
+                        dp[i][j] = false;
+                    }
+                    //如果p的*前边字符和s当前字符相等或者p的字符是‘.'
+                    //三种可能
+                    //匹配0个，比如aa aaa*也就是没有*和*之前的字符也可以匹配上（在你（a*）没来之前我们(aa)已经能匹配上了）dp[i][j]=dp[i][j-2]
+                    //匹配1个，比如aab aab* 也就是*和*之前一个字符只匹配s串的当前一个字符就不看*号了  即 dp[i][j]=dp[i][j-1]
+                    //匹配多个，比如aabb aab*  b*匹配了bb两个b  那么看aab 和aab*是否能匹配上就行了，即dp[i][j]=dp[i-1][j]
+                    if (p.charAt(j - 2) == s.charAt(i - 1) || p.charAt(j - 2) == '.') {
+                        dp[i][j] = dp[i - 1][j] || dp[i][j - 1] || dp[i][j - 2];
+                    }
+                    //如果p的*前边字符和s当前字符不相等或者p的字符不是‘.'，那就把*和*前边一个字符都不要了呗
+                    //你会发现不管是这种情况还是上边的情况都会有dp[i][j]=dp[i][j-2];所以可以把下边剪枝，不用分开写了
+                    //这里分开写是为了好理解
+                    else if (p.charAt(j - 2) != s.charAt(i - 1) && p.charAt(j - 2) != '.') {
+                        dp[i][j] = dp[i][j - 2];
+                    }
+                }
+                //其他情况肯定不能匹配上了  直接false  比如 aba abb*c
                 else {
-                    return c == s.charAt(si);
+                    dp[i][j] = false;
                 }
             }
-
-            char c1 = p.charAt(i + 1);
-            if (c1 != '*') {
-                // single [a-z] match
-                if (c != '.') {
-                    if (c != s.charAt(si)) return false;
-                }
-                // single . match
-                si++;
-                continue;
-            }
-
-            // .*, or [a-z]*
-            if (i == plen - 2) {
-                // .*, match
-                if (c == '.') return true;
-                // [a-z]* match empty substring
-                if (si == slen - 1) return true;
-
-                // [a-z]* match not-empty-string
-                for (int k = si; k < slen; k++) {
-                    if (c != s.charAt(k)) return false;
-                }
-                return true;
-            }
-
-            // [a-z]*xxx
-            if (c != '.') {
-
-            }
-
-            // .*xxx
-
         }
-        return false;
+        return dp[slen][plen];
     }
+
 }

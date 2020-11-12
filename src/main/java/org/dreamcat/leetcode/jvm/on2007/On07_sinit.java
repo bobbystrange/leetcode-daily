@@ -6,7 +6,8 @@ import lombok.Setter;
 /**
  * Create by tuke on 2020/7/7
  * <p>
- * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main org.dreamcat.leetcode.jvm.on2007.On07_sinit
+ * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main
+ * org.dreamcat.leetcode.jvm.on2007.On07_sinit
  */
 public class On07_sinit {
 
@@ -31,12 +32,14 @@ public class On07_sinit {
     }
 
     static class A {
+
         static String version = "1.0";
     }
 
     @Setter
     @Getter
     static class B extends A {
+
         String value;
     }
 }

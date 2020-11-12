@@ -5,10 +5,10 @@ import org.openjdk.jol.info.ClassLayout;
 /**
  * Create by tuke on 2020/7/16
  * <p>
- * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main org.dreamcat.leetcode.jvm.on2007.On16_synchronized
+ * ./gradlew -x test classes && javap -verbose -cp ./build/classes/java/main
+ * org.dreamcat.leetcode.jvm.on2007.On16_synchronized
  * <p>
- * object head
- * 1. mark word, 25bit hashCode + 4bit generation + 1bit biased + 2bit lock flag
+ * object head 1. mark word, 25bit hashCode + 4bit generation + 1bit biased + 2bit lock flag
  * <pre>
  *   30bit ptr-to-lock-of-stack                                       + 2bit 00, lightweight lock
  *   30bit ptr-to-mutex                                               + 2bit 10, heavyweight lock
@@ -26,10 +26,10 @@ import org.openjdk.jol.info.ClassLayout;
  *          then if works, execute the synchronized body,
  *          else,
  * </pre>
- * 2. class metadata address
- * 3. array length
+ * 2. class metadata address 3. array length
  */
 public class On16_synchronized {
+
     private static final Object lock = new Object();
 
     public static void main(String[] args) {

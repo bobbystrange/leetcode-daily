@@ -7,10 +7,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * Create by tuke on 2020/7/18
  * <p>
- * wait       running -> waiting, add current thread to the waiting queue
- * notify     waiting -> blocked, move one waiting thread to synchronized queue
+ * wait       running -> waiting, add current thread to the waiting queue notify     waiting ->
+ * blocked, move one waiting thread to synchronized queue
  */
 public class On18_wait_notify {
+
     private static final Object lock = new Object();
     static boolean flag = true;
 
