@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Create by tuke on 2020/11/9
- * <p>
+ * <p/>
  * 乐观锁CAS实现，非阻塞式
  */
 public class On08_the_dining_philosophers__cas {

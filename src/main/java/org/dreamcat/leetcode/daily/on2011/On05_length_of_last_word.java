@@ -2,7 +2,7 @@ package org.dreamcat.leetcode.daily.on2011;
 
 /**
  * Create by tuke on 2020/11/5
- * <p>
+ * <p/>
  * https://leetcode-cn.com/problems/length-of-last-word/
  */
 public class On05_length_of_last_word {

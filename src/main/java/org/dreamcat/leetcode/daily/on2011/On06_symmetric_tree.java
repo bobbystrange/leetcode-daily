@@ -2,21 +2,21 @@ package org.dreamcat.leetcode.daily.on2011;
 
 import java.util.LinkedList;
 import java.util.Objects;
-import org.dreamcat.leetcode.daily.common.TreeNode;
+import org.dreamcat.leetcode.daily.common.BinaryTreeNode;
 
 /**
  * Create by tuke on 2020/11/6
- * <p>
+ * <p/>
  * https://leetcode-cn.com/problems/symmetric-tree/
  */
 public class On06_symmetric_tree {
 
     // 递归
-    public static <E> boolean isSymmetricByRecurse(TreeNode<E> root) {
+    public static <E> boolean isSymmetricByRecurse(BinaryTreeNode<E> root) {
         return root == null || recurseCompare(root.left, root.right);
     }
 
-    private static <E> boolean recurseCompare(TreeNode<E> left, TreeNode<E> right) {
+    private static <E> boolean recurseCompare(BinaryTreeNode<E> left, BinaryTreeNode<E> right) {
         if (left == null && right == null) {
             return true;
         }
@@ -31,16 +31,16 @@ public class On06_symmetric_tree {
     }
 
     // 队列递归
-    public static <E> boolean isSymmetricByQueue(TreeNode<E> root) {
+    public static <E> boolean isSymmetricByQueue(BinaryTreeNode<E> root) {
         if (root == null || (root.left == null && root.right == null)) {
             return true;
         }
-        LinkedList<TreeNode<E>> queue = new LinkedList<>();
+        LinkedList<BinaryTreeNode<E>> queue = new LinkedList<>();
         queue.add(root.left);
         queue.add(root.right);
         while (!queue.isEmpty()) {
-            TreeNode<E> left = queue.removeFirst();
-            TreeNode<E> right = queue.removeFirst();
+            BinaryTreeNode<E> left = queue.removeFirst();
+            BinaryTreeNode<E> right = queue.removeFirst();
 
             if (left == null && right == null) {
                 return true;
@@ -60,22 +60,22 @@ public class On06_symmetric_tree {
         return true;
     }
 
-    // private static <E> boolean compare(TreeNode<E> left, TreeNode<E> right) {
+    // private static <E> boolean compare(BinaryTreeNode<E> left, BinaryTreeNode<E> right) {
     //
     // }
 
     // 层序遍历
     @SuppressWarnings("unchecked")
-    public static <E> boolean isSymmetricByLevelOrder(TreeNode<E> root) {
+    public static <E> boolean isSymmetricByLevelOrder(BinaryTreeNode<E> root) {
         if (root == null) {
             return true;
         }
 
-        TreeNode<E>[] nodes = (TreeNode<E>[]) new TreeNode[]{root.left, root.right};
+        BinaryTreeNode<E>[] nodes = (BinaryTreeNode<E>[]) new BinaryTreeNode[]{root.left, root.right};
         for (; ; ) {
             var size = nodes.length;
             var halfOfSize = size / 2;
-            var nextNodes = (TreeNode<E>[]) new TreeNode[size * 2];
+            var nextNodes = (BinaryTreeNode<E>[]) new BinaryTreeNode[size * 2];
             var hasNext = false;
             for (var i = 0; i < halfOfSize; i++) {
                 var oneOfHead = nodes[i];
@@ -113,13 +113,13 @@ public class On06_symmetric_tree {
     }
 
     public static void main(String[] args) {
-        var node1 = new TreeNode<>(1);
-        var node21 = new TreeNode<>(2);
-        var node22 = new TreeNode<>(2);
-        var node31 = new TreeNode<>(3);
-        var node32 = new TreeNode<>(4);
-        var node33 = new TreeNode<>(4);
-        var node34 = new TreeNode<>(3);
+        var node1 = new BinaryTreeNode<>(1);
+        var node21 = new BinaryTreeNode<>(2);
+        var node22 = new BinaryTreeNode<>(2);
+        var node31 = new BinaryTreeNode<>(3);
+        var node32 = new BinaryTreeNode<>(4);
+        var node33 = new BinaryTreeNode<>(4);
+        var node34 = new BinaryTreeNode<>(3);
         node1.left = node21;
         node1.right = node22;
 

@@ -2,7 +2,7 @@ package org.dreamcat.leetcode.daily.on2011;
 
 /**
  * Create by tuke on 2020/11/2
- * <p>
+ * <p/>
  * https://leetcode-cn.com/problems/longest-common-prefix
  */
 public class On02_longest_common_prefix {
