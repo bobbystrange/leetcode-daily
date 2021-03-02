@@ -1,0 +1,23 @@
+@startuml
+
+cloud init #grey
+cloud master #aquamarine
+cloud origin_master #aquamarine
+
+cloud A #pink
+cloud B #orange
+cloud C #fuchsia
+
+init -right-> c1 #green
+c1 -right-> master #green
+master -right-> c2 #green
+c2 -right-> origin_master #green
+master -up-> c3
+c3 -right-> A
+master -down-> c4
+c4 -right-> c5
+c5 -right-> B
+origin_master -right-> c6
+c6 -right-> C
+
+@enduml
